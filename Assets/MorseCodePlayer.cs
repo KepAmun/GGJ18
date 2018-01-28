@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MorseCodePlayer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MorseCodePlayer : MonoBehaviour
     public AudioClip DashSound;
 
     public SpriteRenderer TargetSpriteRenderer;
+    public Image TargetImage;
 
     float _dotDuration = 0.09f;
     float _dashDuration;
@@ -88,6 +90,7 @@ public class MorseCodePlayer : MonoBehaviour
                 foreach(var c in code)
                 {
                     TargetSpriteRenderer.enabled = true;
+                    TargetImage.enabled = true;
 
                     if(c == '.')
                     {
@@ -101,6 +104,7 @@ public class MorseCodePlayer : MonoBehaviour
                     }
 
                     TargetSpriteRenderer.enabled = false;
+                    TargetImage.enabled = false;
 
                     yield return new WaitForSeconds(_dotDuration);
                 }
@@ -111,3 +115,42 @@ public class MorseCodePlayer : MonoBehaviour
     
 
 }
+/*
+A .-
+B -...
+C -.-.
+D -..
+E .
+F ..-.
+G --.
+H ....
+I ..
+J .---
+K -.-
+L .-..
+M --
+N -.
+O ---
+P .--.
+Q --.-
+R .-.
+S ...
+T -
+U ..-
+V ...-
+W .--
+X -..-
+Y -.--
+Z --..
+1 .----
+2 ..---
+3 ...--
+4 ....-
+5 .....
+6 -....
+7 --...
+8 ---..
+9 ----.
+0 -----
+
+ */
