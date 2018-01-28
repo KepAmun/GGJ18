@@ -6,4 +6,10 @@ public class Usable : MonoBehaviour
 {
     public string DisplayName;
 
+
+    public virtual void Use()
+    {
+
+    }
+
 }
