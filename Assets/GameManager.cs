@@ -6,25 +6,42 @@ public class GameManager : MonoBehaviour
 {
     public MorseCodePlayer _codePlayer;
 
-    public string[] Messages = { "AK", "JR", "CL" };
+    public string[] Messages = { "SOS", "AK", "JR", "CL" };
 
-    int currentIndex = 0;
-
-    private void Awake()
+    int _currentIndex = 0;
+    
+    public string CurrentMessage
     {
-
+        get { return Messages[_currentIndex]; }
     }
 
 
-    void Start ()
-    {
-		
-	}
-	
 
-	void Update ()
+    public static GameManager Instance { get; private set; }
+
+
+    private void Awake()
     {
-		
-	}
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+
+    private void Start()
+    {
+        _codePlayer.StartPlayingMessage(Messages[_currentIndex]);
+    }
+
+
+    public void ObjectFound()
+    {
+        _currentIndex++;
+    }
 
 }

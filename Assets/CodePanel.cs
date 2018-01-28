@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CodePanel : MonoBehaviour
 {
+    public MorseCodePlayer CodePlayer;
+
     TopDownCharacterController _character;
 
     private void Awake()
@@ -14,6 +16,8 @@ public class CodePanel : MonoBehaviour
     private void OnEnable()
     {
         _character.enabled = false;
+
+        CodePlayer.StartPlayingMessage(GameManager.Instance.CurrentMessage);
     }
 
     private void OnDisable()

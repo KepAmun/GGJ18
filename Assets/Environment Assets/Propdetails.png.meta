@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 9b7d261f382f525428fac65cd31bb207
-timeCreated: 1517157224
-licenseType: Free
+timeCreated: 1517166015
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: Propdetails_0
+    21300002: Propdetails_1
+    21300004: Propdetails_3
+    21300006: Propdetails_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -101,15 +104,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Propdetails_0
+      name: Propdetails_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 70
+        y: 83
+        width: 51
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Propdetails_3
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 12
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Propdetails_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 15
+        width: 49
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

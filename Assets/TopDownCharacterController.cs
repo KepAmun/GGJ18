@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TopDownCharacterController : MonoBehaviour
 {
     public GameObject DirtPilePrefab;
-    public TMPro.TMP_Text TargetUseText;
+    public TMPro.TMP_Text HoverText;
 
     Rigidbody2D _rigidbody;
 
@@ -38,6 +38,11 @@ public class TopDownCharacterController : MonoBehaviour
             {
                 StartDigging();
             }
+        }
+
+        if(_nearbyUsable == null)
+        {
+            HoverText.text = string.Format("{0:F0},{1:F0}", transform.position.x, transform.position.y);
         }
 
     }
@@ -111,8 +116,7 @@ public class TopDownCharacterController : MonoBehaviour
 
         if(usable != null)
         {
-            TargetUseText.enabled = true;
-            TargetUseText.text = usable.DisplayName;
+            HoverText.text = usable.DisplayName;
 
             _nearbyUsable = usable;
         }
@@ -121,8 +125,6 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        TargetUseText.enabled = false;
-
         _nearbyUsable = null;
     }
 
@@ -145,7 +147,7 @@ public class TopDownCharacterController : MonoBehaviour
 
         while(dirtPile.transform.localScale.x < targetScale.x)
         {
-            float t = Time.time - startTime;
+            float t = (Time.time - startTime)/2;
 
             dirtPile.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
 
@@ -155,6 +157,18 @@ public class TopDownCharacterController : MonoBehaviour
         _digging = false;
         _diggingCoroutine = null;
         _animator.SetBool("Digging", false);
+
+
+        startTime = Time.time;
+
+        while(dirtPile.transform.localScale.x > 0)
+        {
+            float t = (Time.time - startTime) / 30;
+
+            dirtPile.transform.localScale = Vector3.Lerp(targetScale, Vector3.zero, t);
+
+            yield return null;
+        }
     }
 
 }

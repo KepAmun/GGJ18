@@ -77,6 +77,8 @@ public class MorseCodePlayer : MonoBehaviour
 
     IEnumerator PlayMessage(string message)
     {
+        message = message.ToUpper();
+
         foreach(var character in message)
         {
             if(char.IsWhiteSpace(character))
@@ -112,7 +114,7 @@ public class MorseCodePlayer : MonoBehaviour
         }
 
     }
-    
+
 
 }
 /*

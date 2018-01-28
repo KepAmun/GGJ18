@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirtPilePrefab: {fileID: 1950532219239154, guid: e8f587182f5623c4f988dd4829e5d357,
     type: 2}
-  TargetUseText: {fileID: 0}
+  HoverText: {fileID: 0}
 --- !u!114 &114342419560433210
 MonoBehaviour:
   m_ObjectHideFlags: 1
