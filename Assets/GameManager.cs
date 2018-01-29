@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public MorseCodePlayer _codePlayer;
 
-    public string[] Messages = { "SOS", "AK", "JR", "CL" };
+    public string[] Messages = { "   SOS", "H I", "G O", "B Y", "A M", "O R", "B E", "M Y", "F O", "O D", };
 
     int _currentIndex = 0;
     
@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _codePlayer.StartPlayingMessage(Messages[_currentIndex]);
+
+        _currentIndex++;
     }
 
 

@@ -8,6 +8,7 @@ public class MorseCodePlayer : MonoBehaviour
     public AudioClip DotSound;
     public AudioClip DashSound;
 
+    public GameObject CodePanel;
     public SpriteRenderer TargetSpriteRenderer;
     public Image TargetImage;
 
@@ -64,8 +65,6 @@ public class MorseCodePlayer : MonoBehaviour
         _spaceDuration = _dotDuration * 7;
 
         _audio = GetComponent<AudioSource>();
-
-        StartPlayingMessage("SOS SOS");
     }
 
 
@@ -77,41 +76,48 @@ public class MorseCodePlayer : MonoBehaviour
 
     IEnumerator PlayMessage(string message)
     {
-        message = message.ToUpper();
-
-        foreach(var character in message)
+        do
         {
-            if(char.IsWhiteSpace(character))
-            {
-                yield return new WaitForSeconds(_spaceDuration);
-            }
-            else if(_characterCodes.ContainsKey(character))
-            {
-                string code = _characterCodes[character];
+            message = message.ToUpper();
 
-                foreach(var c in code)
+            Debug.Log("Playing message: " + message);
+
+            foreach(var character in message)
+            {
+                if(char.IsWhiteSpace(character))
                 {
-                    TargetSpriteRenderer.enabled = true;
-                    TargetImage.enabled = true;
+                    yield return new WaitForSeconds(_spaceDuration);
+                }
+                else if(_characterCodes.ContainsKey(character))
+                {
+                    string code = _characterCodes[character];
 
-                    if(c == '.')
+                    foreach(var c in code)
                     {
-                        _audio.PlayOneShot(DotSound);
+                        TargetSpriteRenderer.enabled = true;
+                        TargetImage.enabled = true;
+
+                        if(c == '.')
+                        {
+                            _audio.PlayOneShot(DotSound);
+                            yield return new WaitForSeconds(_dotDuration);
+                        }
+                        else
+                        {
+                            _audio.PlayOneShot(DashSound);
+                            yield return new WaitForSeconds(_dashDuration);
+                        }
+
+                        TargetSpriteRenderer.enabled = false;
+                        TargetImage.enabled = false;
+
                         yield return new WaitForSeconds(_dotDuration);
                     }
-                    else
-                    {
-                        _audio.PlayOneShot(DashSound);
-                        yield return new WaitForSeconds(_dashDuration);
-                    }
-
-                    TargetSpriteRenderer.enabled = false;
-                    TargetImage.enabled = false;
-
-                    yield return new WaitForSeconds(_dotDuration);
                 }
             }
+            yield return new WaitForSeconds(_spaceDuration + _spaceDuration);
         }
+        while(CodePanel.activeSelf);
 
     }
 

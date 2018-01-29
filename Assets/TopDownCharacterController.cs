@@ -40,11 +40,6 @@ public class TopDownCharacterController : MonoBehaviour
             }
         }
 
-        if(_nearbyUsable == null)
-        {
-            HoverText.text = string.Format("{0:F0},{1:F0}", transform.position.x, transform.position.y);
-        }
-
     }
 
 
@@ -117,7 +112,7 @@ public class TopDownCharacterController : MonoBehaviour
         if(usable != null)
         {
             HoverText.text = usable.DisplayName;
-
+            HoverText.enabled = true;
             _nearbyUsable = usable;
         }
     }
@@ -125,8 +120,10 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        HoverText.enabled = false;
         _nearbyUsable = null;
     }
+
 
     void StartDigging()
     {
@@ -169,6 +166,8 @@ public class TopDownCharacterController : MonoBehaviour
 
             yield return null;
         }
+
+        Destroy(dirtPile);
     }
 
 }
